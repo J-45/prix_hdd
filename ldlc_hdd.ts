@@ -1,13 +1,10 @@
-// deno-lint-ignore-file no-inferrable-types
+// Ctrl+Maj+P > Deno: Initialize Workspace Configuration
 
-// Ctrl+Maj+P 
-// > Deno: Initialize Workspace Configuration
-
-let all_json: string = "";
-let url: string = "";
-let textData: string = "";
-let nombre_de_page: number = 0;
-const regex_nombre_de_page: RegExp = /data-page="\d+">(\d+)<\/a><\/li><li class="next">/gm;
+let all_json = "";
+let url = "";
+let textData = "";
+let nombre_de_page = 0;
+const regex_nombre_de_page = /data-page="\d+">(\d+)<\/a><\/li><li class="next">/gm;
 const regex_info_disque = /name': '([^']+)',\s+'id': '\w+',\s+'price': '([^']+)',/gm;
 
 try {
@@ -27,7 +24,7 @@ if (result != undefined){
 }
 
 for (let _count = 2; _count <= nombre_de_page; _count++) {
-  const url: string = `https://www.ldlc.com/informatique/pieces-informatique/disque-dur-interne/c4697/page${_count}/+fi1192-l1000.html`
+  const url = `https://www.ldlc.com/informatique/pieces-informatique/disque-dur-interne/c4697/page${_count}/+fi1192-l1000.html`
   try {
     console.log(url);
     const textResponse = await fetch(url);
@@ -39,7 +36,6 @@ for (let _count = 2; _count <= nombre_de_page; _count++) {
   }
 }
 
-
 const infoS_disque = all_json.matchAll(regex_info_disque);
 const infos = [];
 
@@ -47,13 +43,13 @@ if (infoS_disque != undefined){
   for (const info_disque of infoS_disque) {
     const nom: string = info_disque[1];
     const res = /(\d+)\sTo/gm.exec(nom);
-    let taille: number = 0;
+    let taille = 0;
     if (res != undefined){
       taille = parseFloat(res[1]) ;
     }
     const prix: number = parseFloat(info_disque[2]) ;
     // console.log(`Nom: ${nom} To: ${taille} Prix:${prix}`);
-    infos.push([Math.round(prix / taille), nom, taille, prix]);
+    infos.push([parseFloat((prix / taille).toPrecision(4)), nom, taille, prix]);
 
   }
 }
@@ -61,13 +57,11 @@ if (infoS_disque != undefined){
 infos.sort((n1,n2) => {
   if (n1[0] > n2[0]) {
       return -1;
-  }
-
-  if (n1[0] < n2[0]) {
+  }else if (n1[0] < n2[0]) {
       return 1;
+  }else{
+    return 0;
   }
-
-  return 0;
 });
 
 console.table(infos); // Output: index - €/To - Nom - Taille - Prix
