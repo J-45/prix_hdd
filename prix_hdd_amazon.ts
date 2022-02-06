@@ -34,7 +34,7 @@ if (result != undefined){
 
 for (let _count = 2; _count <= nombre_de_page; _count++) {
   const url = `https://www.amazon.fr/s?k=disque+dur&page=${_count}&i=computers&rh=n%3A17414958031%2Cp_n_size_browse-bin%3A10857260031%7C10857261031%7C10857262031%7C10857263031%7C10857264031%7C10857265031%2Cp_72%3A437874031&dc&__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3TNDOEROAM537&qid=1644101747&rnid=437872031&sprefix=disque+dur%2Ccomputers%2C65&ref=sr_nr_p_72_2`
-  await sleep(10); // Pause anti-ban
+  await sleep(20); // Pause anti-ban
   all_html += await get_page(url);
 }
 
