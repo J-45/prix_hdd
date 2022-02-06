@@ -1,6 +1,6 @@
 // Ctrl+Maj+P > Deno: Initialize Workspace Configuration
 
-import { sleep } from "https://deno.land/x/sleep/mod.ts";
+import { sleep } from "https://deno.land/x/sleep@v1.2.1/mod.ts";
 
 let all_html = "";
 let url = "";
