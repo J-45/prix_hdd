@@ -54,7 +54,7 @@ if (infoS_disque != undefined){
     const prix: number = parseFloat(info_disque[2]) ;
     const euros_par_to = parseFloat((prix / taille).toPrecision(4));
 
-    const index = infos.findIndex(object => object[1] === [euros_par_to, nom + "\t", taille, prix][1]);
+    const index = infos.findIndex(object => object[1] === nom);
     // https://bobbyhadz.com/blog/javascript-array-push-if-not-exist
     if (index === -1) {
       infos.push([euros_par_to, nom, taille, prix]);
