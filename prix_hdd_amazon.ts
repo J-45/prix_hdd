@@ -5,7 +5,7 @@ import { sleep } from "https://deno.land/x/sleep@v1.2.1/mod.ts";
 let all_html = "";
 let url = "";
 let nombre_de_page = 0;
-const regex_nombre_de_page = /(\d+)<\/span><a href="[^"]+" class="s-pagination-item s-pagination-next s-pagination-button s-pagination-separator">Suivant<svg xmlns="[^"]+" width="\d+" height="\d+" viewBox="[^"]+" focusable="false" aria-hidden="true">/gm;
+const regex_nombre_de_page = /(\d+)<\/span><a href="[^"]+" aria-label="[^"]+" class="[^"]+">Suivant<svg xmlns="[^"]+" width="\d+" height="\d+" viewBox="[^"]+" focusable="false" aria-hidden="true">/gm;
 const regex_info_disque = /<h2 class="a-size-mini a-spacing-none a-color-base s-line-clamp-2"><a class="a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal" href="[^"]+"><span class="a-size-medium a-color-base a-text-normal">([^<]+)<\/span>(?:[^>]+>){20,40}([\d,]+)\s€<\/span><span [^-]+-hidden="true"><span class="a-price-whole">/gm;
 
 async function get_page(url: string): Promise<string> {
